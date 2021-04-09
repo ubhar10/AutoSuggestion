@@ -10,7 +10,6 @@ public class TextFileParseTest {
     String fileName = "TextCorpus.txt";
     ClassLoader classLoader = getClass().getClassLoader();
     File file = new File(classLoader.getResource(fileName).getFile());
-    ;
     TextFile textFileParse = new TextFile(file);
     String[] result = {"Hello", "Hi", "This", "What"};
 

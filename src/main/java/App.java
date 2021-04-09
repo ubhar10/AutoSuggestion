@@ -39,7 +39,7 @@ public class App {
 
         System.out.println("Enter the prefix");
         Scanner sc = new Scanner(System.in);
-        System.out.println(as.getAutoSuggestWords(sc.next().toString()));
+        System.out.println(as.getAutoSuggestWords(sc.next()));
     }
 
 

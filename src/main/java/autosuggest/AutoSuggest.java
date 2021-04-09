@@ -3,7 +3,7 @@ package autosuggest;
 import java.util.List;
 
 public interface AutoSuggest {
-    public void addWordList(List<String> word);
-    public List<String> getAutoSuggestWords(String prefix);
+    void addWordList(List<String> word);
+    List<String> getAutoSuggestWords(String prefix);
 
 }

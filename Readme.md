@@ -18,6 +18,7 @@ If you input string as "He", the result displayed would be "hello" and "help".
 *To add a new Data Structure*
 
 *AutoSuggest*
+
 AutoSuggest Interface has tow method declared.
     public void addWordList(List<String> word);
     public List<String> getAutoSuggestWords(String prefix);

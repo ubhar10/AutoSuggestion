@@ -5,6 +5,7 @@ import wordprocess.WordProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class App {
     //Enum for different file types
@@ -12,6 +13,7 @@ public class App {
         TXT // for text file
     }
 
+    //Enum for different data structures
     enum SuggestionStructure
     {
         TRIE // using Trie to store the current words
@@ -33,11 +35,13 @@ public class App {
          */
 
         AutoSuggest as = createAutoSuggestStructure(SuggestionStructure.TRIE);
-        for (String word : wordToAdd) // Add all the words to the Trie
-            as.addWordToStructure(word);
+        as.addWordList(wordToAdd);
 
-        System.out.println("Word with prefix He " + as.getAutoSuggestWords("H"));
+        System.out.println("Enter the prefix");
+        Scanner sc = new Scanner(System.in);
+        System.out.println(as.getAutoSuggestWords(sc.next().toString()));
     }
+
 
     /*
     * Get the required file type processor to process the file
@@ -48,10 +52,10 @@ public class App {
         return null;
     }
 
+
     /*
      * Get the required structure to build auto suggestion feature
      */
-
     private static AutoSuggest createAutoSuggestStructure(SuggestionStructure requestedStructure)
     {
         if(requestedStructure == SuggestionStructure.TRIE)

@@ -26,7 +26,7 @@ public class TextFile implements Parser {
         try {
             while ((strLine = reader.readLine()) != null) {
                 String lastWord = strLine.substring(strLine.lastIndexOf(" ") + 1);
-                lines.add(lastWord);
+                lines.add(lastWord.toLowerCase());
             }
         } catch (IOException e) {
             e.printStackTrace();

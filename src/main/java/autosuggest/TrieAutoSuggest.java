@@ -11,9 +11,18 @@ public class TrieAutoSuggest implements AutoSuggest {
     }
 
     /*
+    * Iterate the wordList and input into the structure
+     */
+    public void addWordList(List<String> wordList)
+    {
+        for (String word : wordList) // Add all the words to the Trie
+                addWordToStructure(word);
+    }
+
+    /*
      * Add the words to the Trie Data Structure. Every new word would be traversed from root and then added to corresponding Node.
      */
-    public void addWordToStructure(String word) {
+    private void addWordToStructure(String word) {
         TrieNode currentNode = root; // Take the root and traverse.
         for (char letterInWord : word.toCharArray()) {
             if (currentNode.getChildNode().containsKey(letterInWord))
@@ -28,26 +37,28 @@ public class TrieAutoSuggest implements AutoSuggest {
         currentNode.setEndOfWord(true);
     }
 
-    /*
-     * Take the prefix input from the user and traverse it to reach the node from all the words are traversed.
-     */
-    public List<String> getAutoSuggestWords(String prefix) {
-        TrieNode currentNode = root;
-        for (char letterInWord : prefix.toCharArray()) {
-            if (!currentNode.getChildNode().containsKey(Character.toUpperCase(letterInWord))
-                    && !currentNode
-                    .getChildNode()
-                    .containsKey(
-                            Character.toLowerCase(
-                                    letterInWord))) // if any of the letter from the prefix is not present will
-            // return the empty list.
-            {
-                return Collections.emptyList();
-            }
-            currentNode = currentNode.getChildNode().get(letterInWord);
-        }
-        return autoSuggestRec(currentNode, prefix);
-    }
+  /*
+   * Take the prefix input from the user and traverse it to reach the node from all the words are traversed.
+   */
+  public List<String> getAutoSuggestWords(String prefix) {
+      TrieNode currentNode = root;
+      for (char letterInWord : prefix.toCharArray()) {
+          if (!currentNode.getChildNode().containsKey(Character.toUpperCase(letterInWord))
+                  && !currentNode
+                  .getChildNode()
+                  .containsKey(
+                          Character.toLowerCase(
+                                  letterInWord))) // if any of the letter from the prefix is not present will
+          // return the empty list.
+          {
+              return Collections.emptyList();
+          }
+          currentNode = currentNode.getChildNode().get(Character.toLowerCase(letterInWord));
+
+
+      }
+      return autoSuggestRec(currentNode, prefix.toLowerCase());
+  }
 
     /*
      *  Recursive call to add all the words with the prefix input

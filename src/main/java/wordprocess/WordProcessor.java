@@ -13,7 +13,6 @@ public abstract class WordProcessor {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             File file = new File(classLoader.getResource(fileName).getFile());
-            ;
             Parser parser = null;
             parser = createParser(file);
             result = parser.parse();
